@@ -21,9 +21,6 @@
     width: 100%;
     top: 15%;
 }
-.hero-content{
-    margin: 0 auto;
-}
 h1{
     font-family: 'Proxima Nova Th', sans-serif;
     font-size: 62px;
@@ -47,4 +44,8 @@ h2{
 }
 .url-shorten-row{
     background-color: #0b1736;
+}
+.form-container>p{
+    color: #9ca1ad;
+    font-size: 13px;
 }

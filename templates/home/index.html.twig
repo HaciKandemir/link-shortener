@@ -7,7 +7,7 @@
 {% block section %}
     <section class="hero-container">
             <div class="hero-wrap">
-                <div class="hero-content col-md-9">
+                <div class="hero-content col-md-9 mx-auto">
                     <div class="cell col-md-8">
                         <h1>Kısa bağlantılar, büyük sonuçlar</h1>
                         <h2>Markanızı büyütmenize ve korumanıza yardımcı olacak güçlü araçlarla oluşturulmuş bir URL kısaltıcı.</h2>
@@ -25,14 +25,21 @@
 {% block body %}
     <div class="content">
         <section class="url-shorten-row py-4">
-            <div class="col-md-10 mx-auto">
-                <div class="px-1">
-                    <form action="" class="form-inline">
-                        <div class="ml-lg-5 mr-lg-3 col-md-8 col-sm-12">
-                            <input style="width: 100%" type="url" class="form-control form-control-lg" autocomplete="off" name="url" placeholder="https://">
+            <div class="col-md-9 mx-auto">
+                <div class="form-container ml-3 mr-4">
+                    <form action="/url/create" class="form-inline" onsubmit="return createShortUrl()">
+                        <div class="px-0 pr-md-3 mb-2 mb-md-0 col-md-9 col-12">
+                            <input type="url" class="w-100 form-control form-control-lg"
+                                   autocomplete="off" id="urlinput" name="url" placeholder="https://">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg col-md-3 col-10 mx-auto">Kısalt</button>
+                        <button type="submit" class="btn btn-primary btn-lg col-md-3 col-12">Kısalt</button>
                     </form>
+                    <p class="text-center pr-lg-5 mb-0 mt-1">
+                        KISALT butonuna tıklayarak Haci’nin <a href="">Hizmet Şartları</a> ve <a href="">Gizlilik Politikası</a>’nı kabul etmiş olursunuz.
+                    </p>
+                    <div class="mt-2 alert alert-danger text-center" role="alert">
+                        <span class="font-weight-bold">Hata!</span>
+                    </div>
                 </div>
             </div>
         </section>

@@ -14,6 +14,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        # TODO : GET CMS data from db
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
