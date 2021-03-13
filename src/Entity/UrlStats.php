@@ -28,7 +28,7 @@ class UrlStats
     private $browser;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=15)
      */
     private $ip_address;
 
@@ -56,6 +56,11 @@ class UrlStats
      * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $country;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
 
     public function getId(): ?int
     {
@@ -86,12 +91,12 @@ class UrlStats
         return $this;
     }
 
-    public function getIpAddress(): ?int
+    public function getIpAddress(): ?string
     {
         return $this->ip_address;
     }
 
-    public function setIpAddress(int $ip_address): self
+    public function setIpAddress(string $ip_address): self
     {
         $this->ip_address = $ip_address;
 
@@ -154,6 +159,18 @@ class UrlStats
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

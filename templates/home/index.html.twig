@@ -27,19 +27,19 @@
         <section class="url-shorten-row py-4">
             <div class="col-md-9 mx-auto">
                 <div class="form-container ml-3 mr-4">
-                    <form action="" class="form-inline" onsubmit="return createShortUrl()">
+                    <form action="" method="post" class="form-inline" onsubmit="return createShortUrl()">
                         <div class="px-0 pr-md-3 mb-2 mb-md-0 col-md-9 col-12">
                             <input type="url" class="w-100 form-control form-control-lg"
-                                   autocomplete="off" value="https://test.com" id="urlinput" name="urlinput" placeholder="https://">
+                                   autocomplete="off" value="https://test.com" id="urlInput" name="urlInput" placeholder="https://">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg col-md-3 col-12">Kısalt</button>
+                        <button type="submit" id="shortenButton" class="btn btn-primary btn-lg col-md-3 col-12">Kısalt</button>
                     </form>
                     <p class="text-center pr-lg-5 mb-0 mt-1">
                         {%- autoescape -%}
                             {{- inSite.getTermsOfUse.getShortenerForm|raw -}}
                         {%- endautoescape -%}
                     </p>
-                    <div class="mt-2 alert alert-danger text-center d-none">
+                    <div id="shorten-alert" class="mt-2 alert alert-danger text-center d-none">
                         <span class="font-weight-bold">Hata!</span>
                     </div>
                 </div>

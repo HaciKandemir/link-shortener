@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Url;
+use App\Entity\UrlStats;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UrlController extends AbstractController
 {
@@ -15,57 +19,98 @@ class UrlController extends AbstractController
     /**
      * @Route("/url/create", name="url_create")
      */
-    public function create(Request $request): JsonResponse
+    public function create(Request $request, ValidatorInterface $validator, UserInterface $user = null): JsonResponse
     {
         $url = $request->get('url');
+        $shortUrl = null;
 
-        # url validation
+        $violations = $validator->validate($url, [new Assert\Url(), new Assert\NotBlank()]);
+        $errorMessages = [];
 
-        # generate  digit hash
-        $alpha_numeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        $url_hash = substr( str_shuffle($alpha_numeric),0,5);
+        if (count($violations)===0){
+            # generate 5 digit hash
+            $alpha_numeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            $url_hash = substr( str_shuffle($alpha_numeric),0,5);
 
-        $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
-        $url_item = new Url();
-        $url_item->setUrl($url)
-            ->setUrlHash( rand(0,9).rand(0,9).rand(0,9).rand(0,9) )
-            ->setCreatedAt( (new \DateTime()) )
-            ->setUserId(1)
-            ->setClickCount(0)
-            ->setIsPublic(true)
-            ->setExpiredAt( (new \DateTime()) )
-            ->setIsActive(true);
+            $url_item = new Url();
+            $url_item->setUrl($url)
+                ->setUrlHash( $url_hash )
+                ->setCreatedAt( (new \DateTime()) )
+                ->setUserId($user ? $user->getId() : -1)
+                ->setClickCount(0)
+                ->setIsPublic(true)
+                ->setExpiredAt(( new \DateTime() ))
+                ->setIsActive(true);
 
-        $em->persist($url_item);
-        $em->flush();
+            $em->persist($url_item);
+            $em->flush();
+
+            $shortUrl = 'http://127.0.0.1:8000/'.$url_hash;
+        }else{
+            $accessor = PropertyAccess::createPropertyAccessor();
+            foreach($violations as $v){
+                $accessor->setValue($errorMessages, $v->getPropertyPath(), $v->getMessage());
+            }
+        }
 
         return new JsonResponse([
-            'response'=>true,
-            'error'=>false,
-            'errorMessage'=>null
+            'success'=>count($violations)===0??false,
+            'response'=>$shortUrl,
+            'error'=>count($violations)>0??false,
+            'errorMessage'=>count($violations)>0?$errorMessages:null
         ],200);
     }
 
     /**
      * @Route("/{urlHash}", name="redirector")
      */
-    public function redirector($urlHash)
+    public function redirector($urlHash, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $urlRepository = $em->getRepository( Url::class);
+        $urlRepository = $em->getRepository(Url::class);
 
         $url_item = $urlRepository->findOneBy([
             'is_active'=>true,
             'urlHash'=>$urlHash
         ]);
 
-        //$url = $url_item->getUrl();
+        if ($url_item){
+            $url = $url_item->getUrl();
+            $urlId = $url_item->getId();
 
-        # TODO : create stats
-        //$this->saveStats();
+            $this->saveStats($urlId, $request);
 
-        //return $this->redirect($url);
+            $url_item->setClickCount($url_item->getClickCount()+1);
+            $em->flush();
+
+            return $this->redirect($url);
+        }
+
+        return $this->redirectToRoute('index');
+    }
+
+    public function saveStats($urlId, Request $request)
+    {
+        $userAgent = $request->headers->get('User-Agent');
+        $clientIp = $request->getClientIp();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $url_stats = new UrlStats();
+        $url_stats->setUrlId($urlId)
+            ->setBrowser($userAgent)
+            ->setIpAddress($clientIp)
+            ->setDevice('-')
+            ->setResolution('-')
+            ->setLocale('tr')
+            ->setCity('istanbul')
+            ->setCountry('turkey')
+            ->setCreatedAt( ( new \DateTime() ));
+
+        $em->persist($url_stats);
+        $em->flush();
     }
 }
