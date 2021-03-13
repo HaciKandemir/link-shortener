@@ -50,7 +50,7 @@ class UrlController extends AbstractController
     /**
      * @Route("/{urlHash}", name="redirector")
      */
-    public function redirector($urlHash): Response
+    public function redirector($urlHash)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -61,11 +61,11 @@ class UrlController extends AbstractController
             'urlHash'=>$urlHash
         ]);
 
-        $url = $url_item->getUrl();
+        //$url = $url_item->getUrl();
 
         # TODO : create stats
         //$this->saveStats();
 
-        return $this->redirect($url);
+        //return $this->redirect($url);
     }
 }

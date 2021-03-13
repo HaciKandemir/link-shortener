@@ -1,9 +1,31 @@
-function createShortUrl(){
-    const urlInp = document.getElementById( 'urlinput');
-    const  formError = document.getElementsByClassName('form-error')[0];
 
-    formError.innerHTML = '';
-    formError.classList.add()
+    const formSuccess = document.getElementsByClassName('form-success')[0];
+    const formResultDiv = $( ".alert:first" );
+
+    function createShortUrl(){
+        urlInp = document.getElementById( 'urlinput');
+
+        if (urlInp.value.trim().length>0){
+            console.log(urlInp.value);
+        }else{
+            formResultDiv.removeClass('d-none');
+            formResultDiv.getElementsByTagName('span')[0].innerHTML="Bu alan boş bırakılamaz";
+        }
+
+        return false;
+    }
+
+
+
+
+
+/*function createShortUrl(){
+    //formError.innerHTML = '';
+    //formError.classList.add();
+
+    if (urlInp.value!==null){
+        console.log(urlInp.value);
+    }
 
     if (urlInp.value.length>0){
         postUrl();
@@ -14,12 +36,7 @@ function createShortUrl(){
 }
 
 function postUrl(){
-    const urlInp = document.getElementById('urlinput');
-    console.log(urlInp.value);
     const formData = new FormData();
-
-    const formError = document.getElementsByClassName('form-error')[0];
-    const formSuccess = document.getElementsByClassName('form-success')[0];
 
     formData.append('url',urlInp.value);
 
@@ -39,4 +56,4 @@ function postUrl(){
         .catch( err => {
           console.log(err);
         } )
-}
+}*/
