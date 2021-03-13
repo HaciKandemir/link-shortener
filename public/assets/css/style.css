@@ -49,3 +49,27 @@ h2{
     color: #9ca1ad;
     font-size: 13px;
 }
+/*   features   */
+.features-slogan{
+    font-size: 38px;
+    font-family: 'Proxima Nova Th', sans-serif;
+}
+.features-slogan-description {
+    color: #56575b;
+    font-family: 'Proxima Nova Condensed 400',Helvetica,Arial,sans-serif;
+    font-size: 17px;
+}
+.features-title {
+    font-family: 'Proxima Nova Th', sans-serif;
+}
+.features-description {
+    line-height: 1.4em;
+}
+.mt-6{
+    margin-top: 6rem !important;
+}
+/* happy customers  */
+.happy-customers-text{
+    font-size: 32px;
+    font-family: 'Proxima Nova Th', sans-serif;
+}

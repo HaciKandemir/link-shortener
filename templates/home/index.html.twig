@@ -27,22 +27,79 @@
         <section class="url-shorten-row py-4">
             <div class="col-md-9 mx-auto">
                 <div class="form-container ml-3 mr-4">
-                    <form action="/url/create" class="form-inline" onsubmit="return createShortUrl()">
+                    <form action="" class="form-inline" onsubmit="return createShortUrl()">
                         <div class="px-0 pr-md-3 mb-2 mb-md-0 col-md-9 col-12">
                             <input type="url" class="w-100 form-control form-control-lg"
-                                   autocomplete="off" id="urlinput" name="url" placeholder="https://">
+                                   autocomplete="off" value="https://test.com" id="urlinput" name="urlinput" placeholder="https://">
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg col-md-3 col-12">Kısalt</button>
                     </form>
                     <p class="text-center pr-lg-5 mb-0 mt-1">
                         KISALT butonuna tıklayarak Haci’nin <a href="">Hizmet Şartları</a> ve <a href="">Gizlilik Politikası</a>’nı kabul etmiş olursunuz.
                     </p>
-                    <div class="mt-2 alert alert-danger text-center" role="alert">
+                    <div class="mt-2 alert alert-danger text-center d-none">
                         <span class="font-weight-bold">Hata!</span>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="d-block my-5">
+            <div class="col-md-9 mx-auto">
+                <h3 class="text-center features-slogan">Markanıza geri dönüş sağlayan link kısaltıcı</h3>
+                <h4 class="text-center features-slogan-description">
+                    Markanız saklanmak için yaratılmadı. %34 daha fazla
+                    tıklama sağlayan markalı bağlantılarla öne çıkmasına yardımcı olun.
+                </h4>
+
+                <div class="row mt-6">
+                    <div class="px-4 col-10 mx-auto col-md-4">
+                        <img class="features-image img-fluid mb-3" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/08/Homepage-Branded-Links-Illustration-1.png" />
+                        <h5 class="features-title font-weight-bold">Inspire trust</h5>
+                        <p class="features-description">
+                            With more clicks comes increased brand recognition and consumer trust in your
+                            communications—which in turn inspires even more engagement with your links.
+                            (It’s a wonderful cycle.)
+                        </p>
+                    </div>
+                    <div class="px-4 col-10 mx-auto col-md-4">
+                        <img class="features-image img-fluid mb-3" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/08/Homepage-Branded-Links-Illustration-2.png" />
+                        <h5 class="features-title font-weight-bold">Boost results</h5>
+                        <p class="features-description">
+                            On top of better deliverability and click-through, rich link-level data gives you crucial
+                            insight into your link engagement so your team can make smarter decisions around its
+                            content and communications.
+                        </p>
+                    </div>
+                    <div class="px-4 col-10 mx-auto col-md-4">
+                        <img class="features-image img-fluid mb-3" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/08/Homepage-Branded-Links-Illustration-3.png" />
+                        <h5 class="features-title font-weight-bold">Gain control</h5>
+                        <p class="features-description">
+                            Take credit for your content and learn more about how it’s consumed by enabling
+                            auto-branding—a feature that ensures your brand remains in any link someone shortens
+                            pointing to your website.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="col-md-10 mx-auto">
+                <h3 class="text-center happy-customers-text">The most recognized brands in the world love Bitly</h3>
+                <div class="d-flex flex-wrap justify-content-center happy-customers">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-espn.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-disney.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-amazon.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-nike.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-buzzfeed.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-nytimes.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-gartner.svg" alt="">
+                    <img class="px-3 customers-image" src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2019/03/recognizable-brands-bose.svg" alt="">
+                </div>
+            </div>
+        </section>
+
     </div>
 {% endblock %}
 
