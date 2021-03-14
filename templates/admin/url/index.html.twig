@@ -2,13 +2,23 @@
 
 {% block title %}Hello UrlController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block header %}
+    <header>
+        <nav class="navbar navbar-light col-md-10 mx-auto navbar-expand-lg">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="">
+            </a>
+            <div class="navbar-collapse collapse" id="navbarMenu">
+                {% block usernav %}
+                    {% include 'inc/usernav.html.twig' %}
+                {% endblock %}
+            </div>
+        </nav>
+    </header>
+{% endblock %}
 
-<div class="example-wrapper">
+{% block body %}
+<div class="col-9 col-lg-8 mx-auto mt-5">
     <p>Urls</p>
     <table class="table table-bordered table-striped">
         <thead>
@@ -35,6 +45,7 @@
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
+            <th scope="col">username</th>
             <th scope="col">email</th>
             <th scope="col">roles</th>
         </tr>
@@ -42,7 +53,8 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.email }}</td>
+                <td>{{ user.getUsername }}</td>
+                <td>{{ user.getEmail }}</td>
                 <td>
                     {%- for rol in user.roles -%}
                         {{- rol|replace({'ROLE_': ''})|capitalize -}}

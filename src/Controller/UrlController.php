@@ -98,19 +98,25 @@ class UrlController extends AbstractController
         $clientIp = $request->getClientIp();
 
         $em = $this->getDoctrine()->getManager();
+        $locationData = json_decode(file_get_contents("http://ipinfo.io/{$clientIp}"));
 
         $url_stats = new UrlStats();
         $url_stats->setUrlId($urlId)
             ->setBrowser($userAgent)
             ->setIpAddress($clientIp)
-            ->setDevice('-')
+            ->setDevice($this->isMobileDevice($userAgent)?'mobile':'desktop')
             ->setResolution('-')
-            ->setLocale('tr')
-            ->setCity('istanbul')
-            ->setCountry('turkey')
+            ->setLocale(isset($locationData->loc)??null)
+            ->setCity(isset($locationData->city)??null)
+            ->setCountry(isset($locationData->country)??null)
             ->setCreatedAt( ( new \DateTime() ));
 
         $em->persist($url_stats);
         $em->flush();
+    }
+
+    private function isMobileDevice($userAgent) {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
+            , $userAgent);
     }
 }
