@@ -2,20 +2,31 @@
 
 {% block title %}Register{% endblock %}
 
+{% block header %}
+    <header>
+        <nav class="navbar navbar-light col-md-10 mx-auto navbar-expand-lg">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="">
+            </a>
+        </nav>
+    </header>
+{% endblock %}
+
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    <div class="col-9 col-lg-4 mx-auto mt-5">
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
 
-    <h1>Register</h1>
+        <h3>Register</h3>
 
-    {{ form_start(registrationForm) }}
+        {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <button type="submit" class="btn col-12">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
