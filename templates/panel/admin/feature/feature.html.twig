@@ -1,0 +1,23 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}Hello SiteSettingController!{% endblock %}
+
+{% block header %} {% include 'panel/inc/header.html.twig' %} {% endblock %}
+
+{% block body %}
+    <div class="col-9 col-lg-8 mx-auto mt-5">
+
+        <h3>Banner</h3>
+
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.image_path) }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button class="btn"><a href="/admin/features">Return</a></button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

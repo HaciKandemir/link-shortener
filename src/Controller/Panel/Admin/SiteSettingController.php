@@ -5,8 +5,6 @@ namespace App\Controller\Panel\Admin;
 use App\Entity\Banner;
 use App\Form\BannerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +29,7 @@ class SiteSettingController extends AbstractController
             $em->flush();
 
             $this->addFlash(
-                'updated',
+                'success',
                 'Your changes were saved!'
             );
         }

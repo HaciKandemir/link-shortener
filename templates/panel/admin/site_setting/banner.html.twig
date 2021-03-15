@@ -7,7 +7,7 @@
 {% block body %}
     <div class="col-9 col-lg-8 mx-auto mt-5">
 
-        {% for message in app.flashes('updated') %}
+        {% for message in app.flashes('success') %}
             <div id="shorten-alert" class="mt-2 alert alert-success text-center">
                 <span class="font-weight-bold">{{ message }}</span>
             </div>

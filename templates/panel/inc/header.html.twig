@@ -10,7 +10,14 @@
                 {{ app.user.username }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/admin/site-setting/banner"><span class="fa fa-sliders-h"></span> Banner</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="dropdown-item" href="/admin/site-setting/banner">
+                        <span class="fa fa-sliders-h"></span> Banner
+                    </a>
+                    <a class="dropdown-item" href="/admin/features">
+                        <span class="fa fa-rocket"></span> Features
+                    </a>
+                {% endif %}
                 <a class="dropdown-item" href="/logout"><span class="fa fa-sign-out-alt"></span> Çıkış Yap</a>
             </div>
         </div>
