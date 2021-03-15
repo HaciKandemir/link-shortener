@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Profile;
+namespace App\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,7 @@ class UserController extends AbstractController
      */
     public function index(UserInterface $user): Response
     {
-        return $this->render('profile/user/index.html.twig', [
+        return $this->render('panel/user/profile/index.html.twig', [
             'user' => $user,
         ]);
     }

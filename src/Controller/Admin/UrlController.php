@@ -23,7 +23,7 @@ class UrlController extends AbstractController
         $users = $repository->getRepository(User::class);
         $urls_stats = $repository->getRepository(UrlStats::class);
 
-        return $this->render('admin/url/index.html.twig', [
+        return $this->render('panel/admin/url/index.html.twig', [
             'urls' => $urls->findAll(),
             'users' => $users->findAll(),
             'user_count' =>  $users->createQueryBuilder('a')->select('count(a.id)')->getQuery()->getSingleScalarResult(),
