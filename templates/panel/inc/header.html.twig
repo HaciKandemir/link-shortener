@@ -1,0 +1,18 @@
+<header>
+    <nav class="navbar navbar-light col-md-10 mx-auto navbar-expand-lg px-5">
+        <a class="navbar-brand pr-5" href="/panel">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="">
+        </a>
+
+        <div class="dropdown ml-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                {{ app.user.username }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/admin/site-setting/banner"><span class="fa fa-sliders-h"></span> Banner</a>
+                <a class="dropdown-item" href="/logout"><span class="fa fa-sign-out-alt"></span> Çıkış Yap</a>
+            </div>
+        </div>
+    </nav>
+</header>

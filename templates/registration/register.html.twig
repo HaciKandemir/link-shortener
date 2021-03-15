@@ -8,12 +8,13 @@
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('assets/img/logo.png') }}" alt="">
             </a>
+            {% include 'inc/usernav.html.twig' %}
         </nav>
     </header>
 {% endblock %}
 
 {% block body %}
-    <div class="col-9 col-lg-8 mx-auto mt-5">
+    <div class="col-9 col-lg-4 mx-auto mt-5">
         {% for flashError in app.flashes('verify_email_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}

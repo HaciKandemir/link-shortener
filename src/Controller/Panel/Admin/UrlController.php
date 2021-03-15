@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Panel\Admin;
 
 use App\Entity\Url;
 use App\Entity\UrlStats;
