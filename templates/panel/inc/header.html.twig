@@ -10,6 +10,11 @@
                 {{ app.user.username }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if is_granted('ROLE_USER') %}
+                    <a class="dropdown-item" href="{{ path('profile_settings') }}">
+                        <span class="fa fa-user"></span> Profile
+                    </a>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="dropdown-item" href="/admin/site-setting/banner">
                         <span class="fa fa-sliders-h"></span> Banner
