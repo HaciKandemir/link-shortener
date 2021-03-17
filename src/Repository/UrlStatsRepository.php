@@ -22,19 +22,51 @@ class UrlStatsRepository extends ServiceEntityRepository
     // /**
     //  * @return UrlStats[] Returns an array of UrlStats objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function topBrowser(array $urls)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $data = [];
+        foreach ($urls as $url){
+            $rows = $this->createQueryBuilder('u')
+                ->select('u.browser')
+                ->andWhere('u.url_id = :id')
+                ->setParameter('id', $url)
+                ->getQuery()
+                ->getResult();
+            if ($rows){
+                foreach ($rows as $row){
+                    $array = explode(' ', $row['browser']);
+                    $array = explode('/',end($array));
+                    $data[] = $array[0];
+                }
+            }
+        }
+        $data = array_count_values($data);
+        arsort($data);
+        return array_slice($data, 0, 5);
     }
-    */
+
+    public function topDevice(array $urls)
+    {
+        $data = [];
+        foreach ($urls as $url){
+            $rows = $this->createQueryBuilder('u')
+                ->select('u.device')
+                ->andWhere('u.url_id = :id')
+                ->setParameter('id', $url)
+                ->getQuery()
+                ->getResult();
+            if ($rows){
+                foreach ($rows as $row){
+                    $data[] = $row['device'];
+                }
+            }
+        }
+        $data = array_count_values($data);
+        arsort($data);
+        return array_slice($data, 0, 5);
+    }
+
 
     /*
     public function findOneBySomeField($value): ?UrlStats

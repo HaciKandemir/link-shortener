@@ -1,6 +1,8 @@
-{% extends 'panel/base.html.twig' %}
+{% extends 'panel/base2.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
 
 {% block header %} {% include 'panel/inc/header.html.twig' %} {% endblock %}
 
