@@ -54,6 +54,7 @@ class UrlController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $form->getData();
+            $url->setUpdateAt( (new \DateTime()) );
             $em->persist($url);
             $em->flush();
             $this->addFlash(

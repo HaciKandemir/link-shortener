@@ -35,6 +35,12 @@
                                 <span class="sidebar-normal"> Urls Panel </span>
                             </a>
                         </li>
+                        <li{% if current_path=='panel_admin_user'%} class="active" {% endif %}>
+                            <a href="{{ path('panel_admin_user') }}">
+                                <span class="sidebar-mini-icon">U</span>
+                                <span class="sidebar-normal"> Users Panel </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

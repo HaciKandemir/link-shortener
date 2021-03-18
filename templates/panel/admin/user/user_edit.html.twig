@@ -1,0 +1,56 @@
+{% extends 'panel/base2.html.twig' %}
+
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <h5 class="title">Edit Profile</h5>
+                </div>
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="col-md-3 px-1">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="col-md-5 pl-1">
+                            <div class="form-group">
+                                {{ form_label(form.plainPassword, 'Password') }}
+                                {{ form_widget(form.plainPassword) }}
+                                <small>{{ form_help(form.plainPassword) }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Owned roles</label>
+                                <input type="text" class="form-control" disabled placeholder="User Roles" value="
+                                {%- for rol in roles -%}
+                                    {{- rol|replace({'ROLE_': ''})|capitalize -}}
+                                    {{- not loop.last ? ',' -}}
+                                {%- endfor -%}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

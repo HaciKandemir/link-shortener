@@ -1,0 +1,62 @@
+{% extends 'panel/base2.html.twig' %}
+
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title"> All Users </h4>
+                        <a href="" class="btn btn-info ml-auto"><i class="fa fa-plus"></i> Create User</a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th class="text-right">Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for user in all_users %}
+                                <tr>
+                                    <td>{{ user.getUsername }}</td>
+                                    <td>{{ user.getEmail }}</td>
+                                    <td>
+                                        {%- for rol in user.getRoles -%}
+                                            {{- rol|replace({'ROLE_': ''})|capitalize -}}
+                                            {{- not loop.last ? ', ' -}}
+                                        {%- endfor -%}
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-info btn-icon btn-sm">
+                                            <i class="fa fa-link" style="color: white"></i>
+                                        </a>
+                                        <a href="{{ path('panel_profile_settings', {id:user.getId}) }}" class="btn btn-success btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

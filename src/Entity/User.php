@@ -41,6 +41,11 @@ class User implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_active;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +130,18 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive(bool $is_active): self
+    {
+        $this->is_active = $is_active;
 
         return $this;
     }
