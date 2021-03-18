@@ -19,6 +19,27 @@
                     <p>Your Urls Stats</p>
                 </a>
             </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a data-toggle="collapse" href="#adminMenu">
+                    <i class="now-ui-icons objects_key-25"></i>
+                    <p>Admin <b class="caret"></b></p>
+                </a>
+
+                <div class="collapse " id="adminMenu">
+                    <ul class="nav">
+                        <li{% if current_path=='url_panel'%} class="active" {% endif %}>
+                            <a href="{{ path('url_panel') }}">
+                                <span class="sidebar-mini-icon">U</span>
+                                <span class="sidebar-normal"> Urls Panel </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+
         </ul>
     </div>
 </div>

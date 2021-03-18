@@ -1,0 +1,53 @@
+{% extends 'panel/base2.html.twig' %}
+
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <h5 class="title">{{ app.request.get('_route')|split('_')|last|capitalize }} Url</h5>
+                </div>
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            {{ form_row(form.url) }}
+                        </div>
+                        {% if form.urlHash is defined %}
+                            <div class="col-md-4 px-1">
+                                {{ form_row(form.urlHash) }}
+                            </div>
+                        {% endif %}
+                        <!--<div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                { form_label(form.user_id, 'User') }}
+                                { form_widget(form.user_id) }}
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 pr-1">
+                            {{ form_row(form.is_active) }}
+                        </div>
+                        <div class="col-md-2 px-1">
+                            {{ form_row(form.is_public) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

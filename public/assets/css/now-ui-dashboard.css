@@ -5989,3 +5989,27 @@ Created using IcoMoon - icomoon.io
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+.sidebar-mini-icon {
+  text-transform: uppercase;
+  width: 34px;
+  margin-right: 10px;
+  margin-left: 0;
+  font-size: 12px;
+  text-align: center;
+  position: relative;
+  float: left;
+  z-index: 1;
+  display: inherit;
+  line-height: 24px;
+  color: hsla(0,0%,100%,.5);
+}
+.sidebar-normal{
+  margin: 0;
+  position: relative;
+  transform: translateX(0);
+  opacity: 1;
+  white-space: nowrap;
+  display: block;
+  line-height: 23px;
+  z-index: 1;
+}

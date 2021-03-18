@@ -1,88 +1,74 @@
-{% extends 'panel/base.html.twig' %}
+{% extends 'panel/base2.html.twig' %}
 
-{% block title %}Hello UrlController!{% endblock %}
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
 
-{% block header %}
-    <header>
-        <nav class="navbar navbar-light col-md-10 mx-auto navbar-expand-lg">
-            <a class="navbar-brand" href="/">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="">
-            </a>
-            <div class="navbar-collapse collapse" id="navbarMenu">
-                {% block usernav %}
-                    {% include 'inc/usernav.html.twig' %}
-                {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title"> All Urls </h4>
+                        <a href="{{ path('admin_url_create') }}" class="btn btn-info ml-auto"><i class="fa fa-plus"></i> Create</a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Url</th>
+                            <th>Shorten Url</th>
+                            <th class="text-center">Click Count</th>
+                            <th class="text-center">User</th>
+                            <th class="text-center">Active</th>
+                            <th class="text-center">Public</th>
+                            <th class="text-right">Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for url in urls %}
+                                <tr>
+                                    <td>{{ url.getUrl }}</td>
+                                    <td>{{ url.getUrlHash }}</td>
+                                    <td class="text-center">{{ url.getClickCount }}</td>
+                                    <td class="text-center">{{ url.getUserId != '-1' ? url.getUserId : '-' }}</td>
+                                    <td class="text-center">
+                                        {% if url.getIsActive %}
+                                            <i class="fa fa-check" style="color: green"></i>
+                                        {% else %}
+                                            <i class="fa fa-times" style="color: red"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if url.getIsPublic %}
+                                            <i class="fa fa-check" style="color: green"></i>
+                                        {% else %}
+                                            <i class="fa fa-times" style="color: red"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ path('url_edit', {id:url.getId}) }}" class="btn btn-success btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </a>
+                                        <a href="{{ path('url_delete', {id:url.getId}) }}" class="btn btn-danger btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </div>
 {% endblock %}
 
-{% block body %}
-<div class="col-9 col-lg-8 mx-auto mt-5">
-    <p>Urls</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th scope="col">url</th>
-                <th scope="col">url hash</th>
-                <th scope="col">click count</th>
-                <th scope="col">user</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for url in urls %}
-            <tr>
-                <td>{{ url.url }}</td>
-                <td>{{ url.urlhash }}</td>
-                <td>{{ url.clickcount }}</td>
-                <td>{{ url.userid }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <p>users</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th scope="col">username</th>
-            <th scope="col">email</th>
-            <th scope="col">roles</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.getUsername }}</td>
-                <td>{{ user.getEmail }}</td>
-                <td>
-                    {%- for rol in user.roles -%}
-                        {{- rol|replace({'ROLE_': ''})|capitalize -}}
-                        {{- not loop.last ? ',' -}}
-                    {%- endfor -%}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <p>stats</p>
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th scope="col">total user count</th>
-            <th scope="col">total shorten count</th>
-            <th scope="col">total redirect count</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ user_count }}</td>
-                <td>{{ shorten_count }}</td>
-                <td>{{ redirect_count }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
-{% endblock %}

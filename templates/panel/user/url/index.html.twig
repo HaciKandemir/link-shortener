@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <h5 class="card-category">Top 5 Browser</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-0">
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -37,7 +37,7 @@
                 <div class="card-header">
                     <h5 class="card-category">Top 5 Device</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-0">
                     <table class="table text-center">
                         <thead>
                         <tr>
@@ -48,7 +48,7 @@
                         <tbody>
                         {% for device, count in top_devices %}
                             <tr>
-                                <td>{{ device }}</td>
+                                <td>{{ device|capitalize }}</td>
                                 <td>{{ count }}</td>
                             </tr>
                         {% endfor %}
@@ -62,7 +62,7 @@
                 <div class="card-header">
                     <h5 class="card-category">Top 5 Clicked</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-0">
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -92,7 +92,7 @@
                 <div class="card-header">
                     <h4 class="card-title"> Your All Urls</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body pt-0">
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="text-primary">
