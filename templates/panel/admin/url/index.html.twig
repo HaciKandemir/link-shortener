@@ -37,7 +37,7 @@
                                     <td>{{ url.getUrl }}</td>
                                     <td>{{ url.getUrlHash }}</td>
                                     <td class="text-center">{{ url.getClickCount }}</td>
-                                    <td class="text-center">{{ url.getUserId != '-1' ? url.getUserId : '-' }}</td>
+                                    <td class="text-center">{{ url.getUserId != '-1' ? inSite.getUserName(url.getUserId) : '-' }}</td>
                                     <td class="text-center">
                                         {% if url.getIsActive %}
                                             <i class="fa fa-check" style="color: green"></i>
