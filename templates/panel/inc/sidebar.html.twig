@@ -44,6 +44,12 @@
                     </ul>
                 </div>
             </li>
+                <li{% if current_path=='admin_site_setting_banner'%} class="active" {% endif %}>
+                    <a href="{{ path('admin_site_setting_banner') }}">
+                        <i class="now-ui-icons design_image"></i>
+                        <p>Banner</p>
+                    </a>
+                </li>
             {% endif %}
 
         </ul>
