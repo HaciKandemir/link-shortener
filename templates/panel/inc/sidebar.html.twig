@@ -44,20 +44,35 @@
                     </ul>
                 </div>
             </li>
-                <li{% if current_path=='admin_site_setting_banner'%} class="active" {% endif %}>
-                    <a href="{{ path('admin_site_setting_banner') }}">
-                        <i class="now-ui-icons design_image"></i>
-                        <p>Banner</p>
+                <li>
+                    <a data-toggle="collapse" href="#siteSettings">
+                        <i class="now-ui-icons loader_gear"></i>
+                        <p>Site Settings <b class="caret"></b></p>
                     </a>
-                </li>
-                <li{% if current_path=='admin_site_setting_banner'%} class="active" {% endif %}>
-                    <a href="{{ path('admin_features') }}">
-                        <i class="fas fa-rocket"></i>
-                        <p>Features</p>
-                    </a>
+                    <div class="collapse " id="siteSettings">
+                        <ul class="nav">
+                            <li{% if current_path=='admin_site_setting_banner'%} class="active" {% endif %}>
+                                <a href="{{ path('admin_site_setting_banner') }}">
+                                    <i class="now-ui-icons design_image"></i>
+                                    <p>Banner</p>
+                                </a>
+                            </li>
+                            <li{% if current_path=='admin_site_setting_banner'%} class="active" {% endif %}>
+                                <a href="{{ path('admin_features') }}">
+                                    <i class="fas fa-rocket"></i>
+                                    <p>Features</p>
+                                </a>
+                            </li>
+                            <li {% if current_path=='admin_site_setting_privacy'%} class="active" {% endif %}>
+                                <a href="{{ path('admin_site_setting_privacy') }}">
+                                    <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                    <p>Privacy</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             {% endif %}
-
         </ul>
     </div>
 </div>

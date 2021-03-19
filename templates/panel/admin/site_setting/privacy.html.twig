@@ -1,27 +1,35 @@
-{% extends 'panel/base.html.twig' %}
+{% extends 'panel/base2.html.twig' %}
 
-{% block title %}Hello SiteSettingController!{% endblock %}
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
 
-{% block header %} {% include 'panel/inc/header.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <h5 class="title">Terms Of Use Edit</h5>
+                </div>
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 pr-1">
+                            {{ form_row(form.shortener_form) }}
+                        </div>
 
-{% block body %}
-    <div class="col-9 col-lg-8 mx-auto mt-5">
-
-        {% for message in app.flashes('success') %}
-            <div id="shorten-alert" class="mt-2 alert alert-success text-center">
-                <span class="font-weight-bold">{{ message }}</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                </div>
+                {{ form_end(form) }}
             </div>
-        {% endfor %}
-
-        <h3>Terms Of Use</h3>
-
-        {{ form_start(form) }}
-        {{ form_row(form.shortener_form) }}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <button class="btn"><a href="/panel">Return</a></button>
         </div>
-
-        {{ form_end(form) }}
     </div>
 {% endblock %}
