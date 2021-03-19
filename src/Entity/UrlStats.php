@@ -28,22 +28,22 @@ class UrlStats
     private $browser;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $ip_address;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $device;
 
     /**
-     * @ORM\Column(type="string", length=12)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $resolution;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=2, nullable=true)
      */
     private $locale;
 
@@ -61,6 +61,11 @@ class UrlStats
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $lang;
 
     public function getId(): ?int
     {
@@ -96,7 +101,7 @@ class UrlStats
         return $this->ip_address;
     }
 
-    public function setIpAddress(string $ip_address): self
+    public function setIpAddress(?string $ip_address): self
     {
         $this->ip_address = $ip_address;
 
@@ -108,7 +113,7 @@ class UrlStats
         return $this->device;
     }
 
-    public function setDevice(string $device): self
+    public function setDevice(?string $device): self
     {
         $this->device = $device;
 
@@ -120,7 +125,7 @@ class UrlStats
         return $this->resolution;
     }
 
-    public function setResolution(string $resolution): self
+    public function setResolution(?string $resolution): self
     {
         $this->resolution = $resolution;
 
@@ -132,7 +137,7 @@ class UrlStats
         return $this->locale;
     }
 
-    public function setLocale(string $locale): self
+    public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
 
@@ -171,6 +176,18 @@ class UrlStats
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
+
+    public function setLang(?string $lang): self
+    {
+        $this->lang = $lang;
 
         return $this;
     }

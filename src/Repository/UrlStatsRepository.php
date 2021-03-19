@@ -23,7 +23,19 @@ class UrlStatsRepository extends ServiceEntityRepository
     //  * @return UrlStats[] Returns an array of UrlStats objects
     //  */
 
-    public function topBrowser(array $urls)
+    public function topLanguage(int $limit)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('u.lang, COUNT(u.lang) as count')
+            ->groupBy('u.lang')
+            ->orderBy('count', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+        return $query;
+    }
+
+    public function topBrowser(array $urls, int $limit)
     {
         $data = [];
         foreach ($urls as $url){
@@ -43,7 +55,7 @@ class UrlStatsRepository extends ServiceEntityRepository
         }
         $data = array_count_values($data);
         arsort($data);
-        return array_slice($data, 0, 5);
+        return array_slice($data, 0, $limit);
     }
 
     public function topDevice(array $urls)

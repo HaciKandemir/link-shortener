@@ -27,7 +27,7 @@ class UrlController extends AbstractController
         $your_urls = $url_repository->findBy(['user'=>$user]);
         $top_clicks = $url_repository->findBy(['user'=>$user],['click_count'=>'DESC'],5);
 
-        $top_browsers = $url_stats_repository->topBrowser($your_urls);
+        $top_browsers = $url_stats_repository->topBrowser($your_urls, 5);
         $top_devices = $url_stats_repository->topDevice($your_urls);
 
         return $this->render('panel/user/url/index.html.twig', [

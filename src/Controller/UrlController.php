@@ -107,10 +107,11 @@ class UrlController extends AbstractController
             ->setBrowser($userAgent)
             ->setIpAddress($clientIp)
             ->setDevice($this->isMobileDevice($userAgent)?'mobile':'desktop')
-            ->setResolution('-')
-            ->setLocale(isset($locationData->loc)??null)
-            ->setCity(isset($locationData->city)??null)
-            ->setCountry(isset($locationData->country)??null)
+            ->setResolution(null)
+            ->setLang(explode('-',$request->headers->get('Accept-Language'))[0]??null)
+            ->setLocale($locationData->loc??null)
+            ->setCity($locationData->city??null)
+            ->setCountry($locationData->country??null)
             ->setCreatedAt( ( new \DateTime() ));
 
         $em->persist($url_stats);

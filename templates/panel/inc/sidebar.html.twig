@@ -41,6 +41,12 @@
                                 <span class="sidebar-normal"> Users Panel </span>
                             </a>
                         </li>
+                        <li{% if current_path=='panel_admin_top'%} class="active" {% endif %}>
+                            <a href="{{ path('panel_admin_top') }}">
+                                <span class="sidebar-mini-icon">T</span>
+                                <span class="sidebar-normal"> Top 10 </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
