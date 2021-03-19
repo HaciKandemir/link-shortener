@@ -49,7 +49,7 @@ class Url
 
     /**
      *  @ORM\ManyToOne(targetEntity=User::class, inversedBy="urls")
-     *  @ORM\JoinColumn(nullable=false)
+     *  @ORM\JoinColumn(nullable=true)
      */
     private $user;
 

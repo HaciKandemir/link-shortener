@@ -40,7 +40,7 @@ class UrlController extends AbstractController
             $url_item->setUrl($url)
                 ->setUrlHash( $url_hash )
                 ->setCreatedAt( (new \DateTime()) )
-                ->setUser($user ? $user : null)
+                ->setUser($user)
                 ->setClickCount(0)
                 ->setIsPublic(true)
                 ->setExpiredAt(( new \DateTime() ))
