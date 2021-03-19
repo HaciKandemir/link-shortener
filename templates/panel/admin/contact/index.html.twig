@@ -1,0 +1,85 @@
+{% extends 'panel/base2.html.twig' %}
+
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-md-12">
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                        <h4 class="card-title"> Message </h4>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Readied</th>
+                            <th>Answered</th>
+                            <th class="text-right">Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for message in messages %}
+                                <tr>
+                                    <td>{{ message.getSender }}</td>
+                                    <td>{{ message.getUsername }}</td>
+                                    <td>
+                                        {% if message.getSubject|length >50 %}
+                                            {{ message.getSubject[:50] ~ '...' }}
+                                        {% else %}
+                                            {{ message.getSubject}}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if message.getMessage|length >50 %}
+                                            {{ message.getMessage[:50] ~ '...' }}
+                                        {% else %}
+                                            {{ message.getMessage}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if message.getIsReaded %}
+                                            <i class="fa fa-check" style="color: green"></i>
+                                        {% else %}
+                                            <i class="fa fa-times" style="color: red"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if message.getIsAnswered %}
+                                            <i class="fa fa-check" style="color: green"></i>
+                                        {% else %}
+                                            <i class="fa fa-times" style="color: red"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ path('panel_contact_read', {id:message.getId}) }}"
+                                           class="btn btn-success btn-icon btn-sm">
+                                            <i class="far fa-envelope-open"></i>
+                                        </a>
+                                        <a href="{{ path('panel_contact_delete', {id:message.getId}) }}"
+                                           class="btn btn-danger btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

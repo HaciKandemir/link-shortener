@@ -21,6 +21,12 @@
             </li>
 
             {% if is_granted('ROLE_ADMIN') %}
+                <li{% if current_path=='panel_admin_contact'%} class="active" {% endif %}>
+                    <a href="{{ path('panel_admin_contact') }}">
+                        <i class="now-ui-icons ui-1_email-85"></i>
+                        <p>Contact</p>
+                    </a>
+                </li>
             <li>
                 <a data-toggle="collapse" href="#adminMenu">
                     <i class="now-ui-icons objects_key-25"></i>
