@@ -37,7 +37,13 @@
                                     <td>{{ url.getUrl }}</td>
                                     <td>{{ url.getUrlHash }}</td>
                                     <td class="text-center">{{ url.getClickCount }}</td>
-                                    <td class="text-center">{{ url.getUser.getUserName }}</td>
+                                    <td class="text-center">
+                                        {% if url.getUser is not null  %}
+                                            {{ url.getUser.getUserName }}
+                                        {% else %}
+                                        -
+                                        {% endif %}
+                                    </td>
                                     <td class="text-center">
                                         {% if url.getIsActive %}
                                             <i class="fa fa-check" style="color: green"></i>
