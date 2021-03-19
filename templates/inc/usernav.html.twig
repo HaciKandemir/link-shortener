@@ -1,4 +1,7 @@
 <ul class="navbar-nav ml-auto nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/contact"><span class="fa fa-paper-plane"></span> İletişim</a>
+    </li>
     {% if app.user %}
         {% if is_granted('ROLE_USER') %}
             <li class="nav-item">

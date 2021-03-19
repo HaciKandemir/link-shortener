@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block header %} {% include 'inc/header.html.twig' %} {% endblock %}
+
+{% block body %}
+<div class="col-9 col-lg-4 mx-auto mt-5">
+        {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                        <span>{{ message }}</span>
+                </div>
+        {% endfor %}
+
+        {{ form_start(form) }}
+        <div class="form-group">
+                {{ form_label(form.sender, 'Email') }}
+                {{ form_widget(form.sender) }}
+        </div>
+        {{ form_row(form.username) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.message) }}
+        <div class="form-group">
+                <button type="submit" class="btn btn-fill btn-success">Gönder</button>
+        </div>
+        {{ form_end(form) }}
+</div>
+{% endblock %}
