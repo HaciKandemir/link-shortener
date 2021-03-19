@@ -14,7 +14,7 @@
                             <span>{{ message }}</span>
                         </div>
                     {% endfor %}
-                    <h5 class="title">Edit Profile</h5>
+                    <h5 class="title">{{ app.request.get('_route')|split('_')|last|capitalize }} Profile</h5>
                 </div>
                 {{ form_start(form) }}
                 <div class="card-body">
@@ -29,20 +29,15 @@
                             <div class="form-group">
                                 {{ form_label(form.plainPassword, 'Password') }}
                                 {{ form_widget(form.plainPassword) }}
-                                <small>{{ form_help(form.plainPassword) }}</small>
+                                {% if app.request.get('_route')|split('_')|last|capitalize != 'Create' %}
+                                    <small>{{ form_help(form.plainPassword) }}</small>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Owned roles</label>
-                                <input type="text" class="form-control" disabled placeholder="User Roles" value="
-                                {%- for rol in roles -%}
-                                    {{- rol|replace({'ROLE_': ''})|capitalize -}}
-                                    {{- not loop.last ? ',' -}}
-                                {%- endfor -%}">
-                            </div>
+                        <div class="col-md-2 pr-1">
+                            {{ form_row(form.is_active) }}
                         </div>
                     </div>
                 </div>

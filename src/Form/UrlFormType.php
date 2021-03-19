@@ -20,25 +20,12 @@ class UrlFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $id = null;
-        if($options['selected_user']){
-            $id = $options['selected_user'];
-        }
         $builder
             ->add('url', UrlType::class)
-            /*->add('user_id', EntityType::class, [
+            ->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
-                'choice_value' => 'id',
-                'choice_attr' => function($user) use ($id) {
-                    // $selected = $user->getId() == $id ?? false;
-                    $selected = false;
-                    if($user->getId() == $id){
-                        $selected = true;
-                    }
-                    return ['selected' => $selected];
-                },
-            ])*/
+            ])
             ->add('is_active', CheckboxType::class, [
                 'label_attr' => ['class' => 'switch-custom'],
                 'required'   => false,
@@ -62,8 +49,7 @@ class UrlFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Url::class,
-            'selected_user' => Integer::class
+            'data_class' => Url::class
         ]);
     }
 }

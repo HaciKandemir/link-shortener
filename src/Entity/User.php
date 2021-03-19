@@ -46,6 +46,11 @@ class User implements UserInterface
      */
     private $is_active;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Url::class, mappedBy="user")
+     */
+    private $urls;
+
     public function getId(): ?int
     {
         return $this->id;

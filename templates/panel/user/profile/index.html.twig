@@ -9,6 +9,11 @@
         <div class="col-md-8 mx-auto">
             <div class="card">
                 <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
                     <h5 class="title">Edit Profile</h5>
                 </div>
                 {{ form_start(form) }}

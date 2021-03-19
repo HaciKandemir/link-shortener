@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Url;
 use App\Entity\UrlStats;
+use App\Entity\User;
+use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +40,7 @@ class UrlController extends AbstractController
             $url_item->setUrl($url)
                 ->setUrlHash( $url_hash )
                 ->setCreatedAt( (new \DateTime()) )
-                ->setUserId($user ? $user->getId() : -1)
+                ->setUser($user ? $user : null)
                 ->setClickCount(0)
                 ->setIsPublic(true)
                 ->setExpiredAt(( new \DateTime() ))

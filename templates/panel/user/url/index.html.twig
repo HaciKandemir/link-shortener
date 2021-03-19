@@ -90,7 +90,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Your All Urls</h4>
+                    <h4 class="card-title">
+                        {%- if app.request.get('_route')|split('_')|first|capitalize != 'Panel'  -%}
+                        Your
+                        {%- else -%}
+                        {{- user_name -}}
+                        {%- endif -%} All Urls
+                    </h4>
                 </div>
                 <div class="card-body pt-0">
                     <div class="table-responsive">

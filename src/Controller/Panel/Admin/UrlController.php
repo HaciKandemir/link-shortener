@@ -48,12 +48,12 @@ class UrlController extends AbstractController
             $ref = $request->headers->get('referer');
             return $this->redirect(parse_url($ref)['path']);
         }
-
-        $form = $this->createForm(UrlFormType::class, $url, ['selected_user'=>$url->getUserId()]);
+        $form = $this->createForm(UrlFormType::class, $url);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $form->getData();
+
             $url->setUpdateAt( (new \DateTime()) );
             $em->persist($url);
             $em->flush();
@@ -101,7 +101,6 @@ class UrlController extends AbstractController
             $url = $form->getData();
             $url->setUrlHash( $url_hash )
                 ->setCreatedAt( (new \DateTime()) )
-                ->setUserId( $user->getId() )
                 ->setClickCount(0)
                 ->setExpiredAt(( new \DateTime() ));
 

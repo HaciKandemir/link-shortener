@@ -42,10 +42,16 @@ class Url
      */
     private $is_active;
 
-    /**
+    /*
      * @ORM\Column(type="integer")
+
+    private $user_id;*/
+
+    /**
+     *  @ORM\ManyToOne(targetEntity=User::class, inversedBy="urls")
+     *  @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     /**
      * @ORM\Column(type="integer")
@@ -132,14 +138,14 @@ class Url
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUser(?User $user_id): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user_id;
 
         return $this;
     }
