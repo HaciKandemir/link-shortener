@@ -1,23 +1,42 @@
-{% extends 'panel/base.html.twig' %}
+{% extends 'panel/base2.html.twig' %}
 
-{% block title %}Hello SiteSettingController!{% endblock %}
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
 
-{% block header %} {% include 'panel/inc/header.html.twig' %} {% endblock %}
-
-{% block body %}
-    <div class="col-9 col-lg-8 mx-auto mt-5">
-
-        <h3>Banner</h3>
-
-        {{ form_start(form) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.image_path) }}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <button class="btn"><a href="/admin/features">Return</a></button>
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <h5 class="title">{{ app.request.get('_route')|split('_')|last|capitalize }} Feature</h5>
+                </div>
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            {{ form_row(form.title) }}
+                        </div>
+                        <div class="col-md-7 px-1">
+                            {{ form_row(form.image_path) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 pr-1">
+                            {{ form_row(form.description) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-
-        {{ form_end(form) }}
     </div>
 {% endblock %}

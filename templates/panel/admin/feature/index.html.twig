@@ -1,42 +1,58 @@
-{% extends 'panel/base.html.twig' %}
+{% extends 'panel/base2.html.twig' %}
 
-{% block title %}Hello SiteSettingController!{% endblock %}
+{% block sidebar %}
+    {% include 'panel/inc/sidebar.html.twig' %}
+{% endblock %}
 
-{% block header %} {% include 'panel/inc/header.html.twig' %} {% endblock %}
-
-{% block body %}
-    <div class="col-9 col-lg-8 mx-auto text-center mt-5">
-
-        <a href="/admin/feature/create" class="btn btn-danger mx-auto"><i class="fa fa-plus"></i> Add New Feature</a>
-        {% for message in app.flashes('success') %}
-            <div id="shorten-alert" class="mt-2 alert alert-success text-center">
-                <span class="font-weight-bold">{{ message }}</span>
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-12 d-flex">
+                        <h4 class="card-title"> All Features </h4>
+                        <a href="{{ path('admin_feature_create') }}" class="btn btn-info ml-auto">
+                            <i class="fa fa-plus"></i> Add New Feature
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image path</th>
+                            <th class="text-right">Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for feature in features %}
+                                <tr>
+                                    <td>{{ feature.getTitle }}</td>
+                                    <td>{{ feature.getDescription[:50] ~ '...' }}</td>
+                                    <td>{{ feature.getImagepath[:50] ~ '...' }}</td>
+                                    <td class="text-right">
+                                        <a href="{{ path('admin_feature_update', {id:feature.getId}) }}"
+                                           class="btn btn-success btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </a>
+                                        <a href="{{ path('admin_feature_delete', {id:feature.getId}) }}"
+                                           class="btn btn-danger btn-icon btn-sm">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
-        <h3 class="text-left">Features</h3>
-        <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th scope="col">title</th>
-                <th scope="col">description</th>
-                <th scope="col">image path</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for feature in features %}
-                <tr>
-                    <td>{{ feature.getTitle }}</td>
-                    <td>{{ feature.getDescription[:50] ~ '...' }}</td>
-                    <td>{{ feature.getImagepath[:50] ~ '...' }}</td>
-                    <td>
-                        <a href="/admin/feature/update/{{ feature.getId }}" class="mr-3"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="/admin/feature/delete/{{ feature.getId }}"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
-
 {% endblock %}

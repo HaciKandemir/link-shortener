@@ -24,18 +24,39 @@ class FeatureController extends AbstractController
     }
 
     /**
-     * @Route("/admin/feature/update/{id}", name="admin_feature_update")
      * @Route("/admin/feature/create", name="admin_feature_create")
      */
-    public function create(Request $request, int $id=null): Response
+    public function create(Request $request): Response
+    {
+        $feature = new Features();
+        $form = $this->createForm(FeatureType::class, $feature);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $banner = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($banner);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'New feature added!'
+            );
+            return $this->features();
+        }
+        return $this->render('panel/admin/feature/feature.html.twig',[
+            "form" => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/feature/update/{id}", name="admin_feature_update")
+     */
+    public function update(Request $request, int $id): Response
     {
         $em = $this->getDoctrine()->getManager();
-
-        if (!is_null($id)){
-            $feature = $em->getRepository(Features::class)->find($id);
-        }else{
-            $feature = new Features();
-        }
+        $feature = $em->getRepository(Features::class)->find($id);
 
         $form = $this->createForm(FeatureType::class, $feature);
 
@@ -48,7 +69,7 @@ class FeatureController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'New feature added!'
+                'Feature updated!'
             );
             return $this->features();
         }
@@ -68,8 +89,8 @@ class FeatureController extends AbstractController
         $em->flush();
         $this->addFlash(
             'success',
-            'feature deleted!'
+            'Feature deleted!'
         );
-        return $this->features();
+        return $this->redirectToRoute('admin_features');
     }
 }
