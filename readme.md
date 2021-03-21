@@ -28,51 +28,48 @@
   <details>
     <summary>İletişim</summary>
 
-- Mesaj Listesi
-  ![admin_contact](https://user-images.githubusercontent.com/29414369/111898017-5a215b00-8a34-11eb-9f4b-5ce4f4af672f.png)
+    - Mesaj Listesi
+        ![admin_contact](https://user-images.githubusercontent.com/29414369/111898017-5a215b00-8a34-11eb-9f4b-5ce4f4af672f.png)
 
-- Mesaj Detay
-  ![admin_contact_message](https://user-images.githubusercontent.com/29414369/111898018-5c83b500-8a34-11eb-8211-3e856a8c33ea.png)
-
+    - Mesaj Detay
+        ![admin_contact_message](https://user-images.githubusercontent.com/29414369/111898018-5c83b500-8a34-11eb-8211-3e856a8c33ea.png)
   </details>
 
   <details>
     <summary>Admin</summary>
 
-   <details>
-     <summary>URL Panel</summary>
+    <details>
+      <summary>URL Panel</summary>
 
-- URL Listesi
-  ![admin_panel_urls](https://user-images.githubusercontent.com/29414369/111898116-10854000-8a35-11eb-890a-63e0b330a76d.png)
+  - URL Listesi
+    ![admin_panel_urls](https://user-images.githubusercontent.com/29414369/111898116-10854000-8a35-11eb-890a-63e0b330a76d.png)
+      
+  - URL Oluştur
+    ![admin_panel_urls_create](https://user-images.githubusercontent.com/29414369/111898118-12e79a00-8a35-11eb-929f-0e1fc9f678bf.png)
+      
+  - URL Düzenle
+    ![admin_panel_urls_edit](https://user-images.githubusercontent.com/29414369/111898121-1549f400-8a35-11eb-9f92-ee9a1a22bbb0.png)
+  
+    </details>
 
-- URL Oluştur
-  ![admin_panel_urls_create](https://user-images.githubusercontent.com/29414369/111898118-12e79a00-8a35-11eb-929f-0e1fc9f678bf.png)
+    <details>
+      <summary>Kullanıcı Panel</summary>
 
-- URL Düzenle
-  ![admin_panel_urls_edit](https://user-images.githubusercontent.com/29414369/111898121-1549f400-8a35-11eb-9f92-ee9a1a22bbb0.png)
+    - Kullanıcı Listesi
+          ![admin_panel_users](https://user-images.githubusercontent.com/29414369/111898512-930eff00-8a37-11eb-813a-11a3816e8ab2.png)
+      
+    - Kullanıcını Linkleri
+          ![admin_panel_users_links](https://user-images.githubusercontent.com/29414369/111898525-a5893880-8a37-11eb-86d1-6863bd1c0d2e.png)
 
-   </details>
+    - Kullanıcı Oluştur
+          ![admin_panel_users_create_admin](https://user-images.githubusercontent.com/29414369/111898515-986c4980-8a37-11eb-9106-f68afb4a2f7e.png)
 
-   <details>
-     <summary>Kullanıcı Panel</summary>
-
-- Kullanıcı Listesi
-  ![admin_panel_users](https://user-images.githubusercontent.com/29414369/111898512-930eff00-8a37-11eb-813a-11a3816e8ab2.png)
-
-- Kullanıcını Linkleri
-  ![admin_panel_users_links](https://user-images.githubusercontent.com/29414369/111898525-a5893880-8a37-11eb-86d1-6863bd1c0d2e.png)
-
-- Kullanıcı Oluştur
-  ![admin_panel_users_create_admin](https://user-images.githubusercontent.com/29414369/111898515-986c4980-8a37-11eb-9106-f68afb4a2f7e.png)
-
-- Kullanıcı Düzenle
-  ![admin_panel_users_edit](https://user-images.githubusercontent.com/29414369/111898521-a1f5b180-8a37-11eb-926b-f7b25ff38b10.png)
-
-   </details>
-
-- TOP 10
-  ![admin_panel_top10](https://user-images.githubusercontent.com/29414369/111898620-4e379800-8a38-11eb-9975-f6e254c54ea9.png)
-
+    - Kullanıcı Düzenle
+          ![admin_panel_users_edit](https://user-images.githubusercontent.com/29414369/111898521-a1f5b180-8a37-11eb-926b-f7b25ff38b10.png)
+    </details>
+      
+  - TOP 10
+      ![admin_panel_top10](https://user-images.githubusercontent.com/29414369/111898620-4e379800-8a38-11eb-9975-f6e254c54ea9.png)
   </details>
 
 </details>
@@ -89,13 +86,13 @@
   <details>
     <summary>Özellikler</summary>
 
-- Özellik Listesi
+  - Özellik Listesi
   ![settings_panel_features](https://user-images.githubusercontent.com/29414369/111899741-6d85f380-8a3f-11eb-8572-5665b6f12e07.png)
 
-- Özellik Oluştur
+  - Özellik Oluştur
   ![settings_panel_features_create](https://user-images.githubusercontent.com/29414369/111899744-6f4fb700-8a3f-11eb-9d1b-42ce8b56c3d6.png)
 
-- Özellik Düzenle
+  - Özellik Düzenle
   ![settings_panel_features_edit](https://user-images.githubusercontent.com/29414369/111899746-71197a80-8a3f-11eb-87e9-a93cb1c9b025.png)
 
   </details>
